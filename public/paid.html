@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Payment – TaknaDocs</title><link rel="icon" href="/logo.svg" type="image/svg+xml">
+<style>body{margin:0;background:#f4f6fa;color:#12213a;font-family:system-ui,"Noto Sans Devanagari",sans-serif;display:grid;place-items:center;min-height:100vh;padding:16px}
+@media(prefers-color-scheme:dark){body{background:#0e1626;color:#eef2fb}.c{background:#16213a!important}}
+.c{background:#fff;border-radius:16px;padding:26px;max-width:460px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.id{font-size:1.7rem;font-weight:800;letter-spacing:2px;color:#0b5fff;user-select:all;margin:8px 0}
+a.b,button{display:inline-block;background:#0b5fff;color:#fff;border:0;border-radius:10px;padding:12px 20px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;margin-top:12px}</style></head>
+<body><div class="c"><img src="/logo.svg" width="56" height="56" alt="TaknaDocs"><div id="c"><h2>⏳ भुगतान जाँच रहे हैं… / Checking payment…</h2></div></div>
+<script>
+var q=new URLSearchParams(location.search),oid=q.get("orderId")||"",c=document.getElementById("c"),tries=0;
+function esc(x){return String(x).replace(/[&<>"]/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]})}
+function ok(t,inv){c.innerHTML='<h2>✅ भुगतान सफल / Payment successful</h2><p>आपकी Tracking ID / Your Tracking ID:</p><div class="id">'+esc(t)+'</div><p>इसे सुरक्षित रखें। मोबाइल नंबर के साथ ट्रैक करें।<br><small>Save it. Track with your mobile number.</small></p>'+(inv?'<a class="b" href="'+esc(inv)+'" style="background:#12a150">🧾 इनवॉइस PDF डाउनलोड / Download Invoice</a><br>':'')+'<a class="b" href="/?tid='+encodeURIComponent(t)+'#track">ट्रैक करें / Track</a>'}
+function wait(msg){c.innerHTML='<h2>⏳ '+msg+'</h2><p>भुगतान की पुष्टि में कुछ समय लग सकता है। / Confirmation can take a short while.</p><button onclick="tries=0;go()">दोबारा जाँचें / Check again</button>'}
+function go(){
+  fetch("/api/orders/verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderId:oid})}).then(function(r){return r.json().then(function(j){return{s:r.status,j:j}})}).then(function(x){
+    if(x.j.track)return ok(x.j.track,x.j.invoice);
+    if(x.s==404){c.innerHTML="<h2>❌ ऑर्डर नहीं मिला / Order not found</h2><a class='b' href='/'>होम / Home</a>";return}
+    if(++tries<30)return setTimeout(go,6000);
+    wait("अभी पुष्टि बाकी है / Still pending")}).catch(function(){if(++tries<30)setTimeout(go,6000);else wait("कनेक्शन समस्या / Connection problem")})
+}
+if(q.get("status")==="CANCELLED")c.innerHTML="<h2>❌ भुगतान रद्द / Payment cancelled</h2><p>अगर आपने भुगतान कर दिया है तो नीचे जाँचें, वरना दोबारा आवेदन करें।<br><small>If you already paid, check below; otherwise apply again.</small></p><button onclick='go()'>भुगतान जाँचें / Check payment</button> <a class='b' href='/#apply'>दोबारा आवेदन / Apply again</a>";
+else if(oid)go();else c.innerHTML="<h2>Invalid link</h2><a class='b' href='/'>Home</a>";
+</script></body></html>

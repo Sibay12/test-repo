@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TaknaDocs – PAN, FSSAI & GST | TAKNA Technology</title>
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<meta name="description" content="PAN card, FSSAI licence and GST services online – a product of TAKNA Technology (www.takna.online).">
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--ink:#12213a;--mute:#5b6882;--line:#e2e6ee;--pri:#0b5fff;--pri2:#e8f0ff;--acc:#ff7a1a;--ok:#12a150;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1626;--card:#16213a;--ink:#eef2fb;--mute:#9aa8c4;--line:#27344f;--pri:#5b8cff;--pri2:#1b2c52}}
+:root[data-theme="dark"]{--bg:#0e1626;--card:#16213a;--ink:#eef2fb;--mute:#9aa8c4;--line:#27344f;--pri:#5b8cff;--pri2:#1b2c52}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;height:56px}
+.logo{font-weight:800;font-size:1.15rem}.logo b{color:var(--pri)}
+nav{display:flex;gap:14px;font-size:.9rem;color:var(--mute);overflow-x:auto;flex:1;justify-content:center}
+nav a{white-space:nowrap}
+.lang{border:1px solid var(--pri);background:var(--pri2);color:var(--pri);border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer}
+.btn{display:inline-block;background:var(--pri);color:#fff;border:0;border-radius:10px;padding:12px 20px;font-weight:700;font-size:1rem;cursor:pointer}
+.btn.alt{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.hero{padding:40px 0 26px;text-align:center}
+.hero h1{font-size:clamp(1.7rem,5vw,2.8rem);line-height:1.2;margin:0 0 12px}
+.hero h1 span{color:var(--pri)}
+.hero p{color:var(--mute);max-width:620px;margin:0 auto 22px;font-size:1.05rem}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px;font-size:.88rem;color:var(--mute)}
+.badges span:before{content:"✓ ";color:var(--ok);font-weight:800}
+section{padding:30px 0}
+h2{font-size:1.55rem;margin:0 0 6px}.sub{color:var(--mute);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.ic{width:46px;height:46px;border-radius:12px;background:var(--pri2);display:grid;place-items:center;font-size:1.4rem;margin-bottom:10px}
+.card h3{margin:0 0 10px}
+.opt{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;font:inherit;font-size:.95rem;cursor:pointer}
+.opt:hover{border-color:var(--pri)}.opt i{color:var(--pri);font-style:normal;font-weight:800}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer;font-size:.95rem}
+.tab.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.pane{display:none}.pane.on{display:block}
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.docs h4{margin:0 0 8px}
+ul.l{margin:0;padding-left:18px;color:var(--mute);font-size:.95rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;counter-increment:s}
+.step:before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;margin-bottom:8px}
+.step b{display:block;margin-bottom:4px}.step small{color:var(--mute)}
+form{display:grid;gap:12px}
+label{font-size:.88rem;font-weight:600;display:grid;gap:5px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.note{font-size:.82rem;color:var(--mute)}
+.sel{background:var(--pri2);border-radius:10px;padding:10px 12px;font-size:.92rem;color:var(--pri);font-weight:600}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+summary{font-weight:700;cursor:pointer}details p{color:var(--mute);margin:8px 0 0}
+footer{border-top:1px solid var(--line);background:var(--card);padding:24px 0;margin-top:20px;color:var(--mute);font-size:.88rem}
+footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#25d366;color:#fff;border-radius:999px;padding:12px 18px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:9}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mute);font-size:.8rem;text-transform:uppercase}
+tr.grp td{background:var(--pri2);font-weight:700;color:var(--pri)}
+#abox h3{margin:18px 0 8px}#abox input,#abox select{margin-bottom:8px}
+.app{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:var(--bg)}
+.app small{color:var(--mute)}
+.tl{list-style:none;padding:0;margin:14px 0 0}
+.tl li{padding:8px 0 8px 26px;position:relative;color:var(--mute)}
+.tl li:before{content:"";position:absolute;left:4px;top:13px;width:12px;height:12px;border-radius:50%;border:2px solid var(--line);background:var(--card)}
+.tl li.d{color:var(--ink)}.tl li.d:before{background:var(--ok);border-color:var(--ok)}
+.tl li.c:before{background:var(--acc);border-color:var(--acc)}
+.pill{display:inline-block;background:var(--ok);color:#fff;border-radius:999px;padding:3px 12px;font-size:.85rem;font-weight:700}
+.gl a{color:var(--pri);font-weight:600}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top" style="display:flex;align-items:center;gap:8px"><img src="/logo.svg" width="34" height="34" alt=""><span>Takna<b>Docs</b></span></a>
+  <nav><a href="#services" data-t="Services|सेवाएँ"></a><a href="#documents" data-t="Documents|दस्तावेज़"></a><a href="#pricing" data-t="Pricing|शुल्क"></a><a href="#apply" data-t="Apply|आवेदन"></a><a href="#track" data-t="Track|ट्रैक"></a><a href="#faq" data-t="FAQ|सवाल-जवाब"></a></nav>
+  <button class="lang" id="lang" type="button">EN</button>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <h1 data-t="PAN, FSSAI &amp; GST<br><span>apply online, hassle-free</span>|पैन, FSSAI और GST<br><span>ऑनलाइन आवेदन, बिना झंझट</span>"></h1>
+  <p data-t="New PAN card or corrections, FSSAI licence registration and renewal, GST registration and return filing — handled by experts, tracked online.|नया पैन कार्ड या सुधार, FSSAI लाइसेंस रजिस्ट्रेशन और रिन्यूअल, GST रजिस्ट्रेशन और रिटर्न फाइलिंग — विशेषज्ञों द्वारा, ऑनलाइन ट्रैकिंग के साथ।"></p>
+  <div class="cta"><a class="btn" href="#apply" data-t="Apply Now|अभी आवेदन करें"></a><a class="btn alt" href="#services" data-t="View Services|सेवाएँ देखें"></a><a class="btn alt" href="#track" data-t="Track Application|आवेदन ट्रैक करें"></a></div>
+  <div class="badges"><span data-t="Fast processing|तेज़ प्रोसेसिंग"></span><span data-t="Expert review|विशेषज्ञ जाँच"></span><span data-t="Status updates|स्टेटस अपडेट"></span><span data-t="Secure documents|सुरक्षित दस्तावेज़"></span></div>
+</div>
+
+<section id="services"><div class="wrap">
+  <h2 data-t="Our Services|हमारी सेवाएँ"></h2><p class="sub" data-t="Tap any option to start your application.|आवेदन शुरू करने के लिए कोई भी विकल्प दबाएँ।"></p>
+  <div class="grid" id="cards"></div>
+</div></section>
+
+<section id="documents"><div class="wrap">
+  <h2 data-t="Documents Required|ज़रूरी दस्तावेज़"></h2><p class="sub" data-t="Keep these ready to speed things up.|इन्हें तैयार रखें ताकि काम जल्दी हो।"></p>
+  <div class="tabs">
+    <button class="tab on" data-d="p1" data-t="PAN|पैन"></button><button class="tab" data-d="p2" data-t="FSSAI|FSSAI"></button><button class="tab" data-d="p3" data-t="GST|GST"></button>
+  </div>
+  <div class="pane on" id="p1"><div class="docs">
+    <div class="card"><h4 data-t="New PAN|नया पैन"></h4><ul class="l"><li data-t="Aadhaar card|आधार कार्ड"></li><li data-t="Passport-size photo &amp; signature|पासपोर्ट साइज़ फोटो और हस्ताक्षर"></li><li data-t="Mobile number &amp; email|मोबाइल नंबर और ईमेल"></li><li data-t="Firm/company: registration proof|फर्म/कंपनी: रजिस्ट्रेशन प्रमाण"></li></ul></div>
+    <div class="card"><h4 data-t="PAN correction|पैन सुधार"></h4><ul class="l"><li data-t="Existing PAN number|मौजूदा पैन नंबर"></li><li data-t="Proof of the corrected detail (Aadhaar, certificate)|सही जानकारी का प्रमाण (आधार, प्रमाणपत्र)"></li><li data-t="Photo &amp; signature if changing|फोटो/हस्ताक्षर बदलने पर"></li></ul></div>
+  </div></div>
+  <div class="pane" id="p2"><div class="docs">
+    <div class="card"><h4 data-t="Registration|रजिस्ट्रेशन"></h4><ul class="l"><li data-t="Photo ID &amp; Aadhaar|फोटो आईडी और आधार"></li><li data-t="Passport-size photo|पासपोर्ट साइज़ फोटो"></li><li data-t="Business address proof / rent agreement|दुकान का पता प्रमाण / किराया समझौता"></li><li data-t="Food category &amp; product list|खाद्य श्रेणी और उत्पाद सूची"></li></ul></div>
+    <div class="card"><h4 data-t="Renewal|रिन्यूअल"></h4><ul class="l"><li data-t="Existing licence / registration number|मौजूदा लाइसेंस / रजिस्ट्रेशन नंबर"></li><li data-t="Latest Aadhaar &amp; photo|ताज़ा आधार और फोटो"></li><li data-t="Annual return details (if applicable)|वार्षिक रिटर्न की जानकारी (यदि लागू)"></li></ul></div>
+  </div></div>
+  <div class="pane" id="p3"><div class="docs">
+    <div class="card"><h4 data-t="Registration|रजिस्ट्रेशन"></h4><ul class="l"><li data-t="PAN &amp; Aadhaar of owner / partners|मालिक / पार्टनर का पैन और आधार"></li><li data-t="Photo &amp; business address proof|फोटो और व्यवसाय पता प्रमाण"></li><li data-t="Bank proof (cancelled cheque)|बैंक प्रमाण (कैंसिल चेक)"></li><li data-t="Mobile &amp; email for OTP|OTP के लिए मोबाइल और ईमेल"></li></ul></div>
+    <div class="card"><h4 data-t="Return filing|रिटर्न फाइलिंग"></h4><ul class="l"><li data-t="GSTIN &amp; portal login details|GSTIN और पोर्टल लॉगिन जानकारी"></li><li data-t="Sales &amp; purchase invoices / Excel|बिक्री और खरीद इनवॉइस / Excel"></li><li data-t="Previous return details|पिछले रिटर्न की जानकारी"></li></ul></div>
+  </div></div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <h2 data-t="Pricing|शुल्क"></h2><p class="sub" data-t="Clear pricing for every service. Final amount is shown before you pay.|हर सेवा का साफ़ शुल्क। भुगतान से पहले अंतिम राशि दिखती है।"></p>
+  <div class="card" style="overflow-x:auto"><table id="ptab"></table></div>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <h2 data-t="How It Works|काम कैसे होता है"></h2><p class="sub" data-t="Four simple steps.|चार आसान चरण।"></p>
+  <div class="steps">
+    <div class="step"><b data-t="Submit request|आवेदन भेजें"></b><small data-t="Fill the form below.|नीचे का फॉर्म भरें।"></small></div>
+    <div class="step"><b data-t="Share documents|दस्तावेज़ भेजें"></b><small data-t="Upload clear photos in the form.|फॉर्म में साफ़ फोटो अपलोड करें।"></small></div>
+    <div class="step"><b data-t="We file it|हम फाइल करेंगे"></b><small data-t="Team verifies and files.|टीम जाँचकर फाइल करेगी।"></small></div>
+    <div class="step"><b data-t="Get delivered|दस्तावेज़ पाएँ"></b><small data-t="Receive acknowledgement and final document.|पावती और अंतिम दस्तावेज़ मिलेगा।"></small></div>
+  </div>
+</div></section>
+
+<section id="apply"><div class="wrap">
+  <div class="card" style="max-width:660px;margin:0 auto">
+    <h2 data-t="Apply Online|ऑनलाइन आवेदन"></h2><p class="sub" data-t="Choose service, fill details, upload documents and pay online.|सेवा चुनें, जानकारी भरें, दस्तावेज़ अपलोड करें और ऑनलाइन भुगतान करें।"></p>
+    <div id="okbox" class="sel" hidden style="margin-bottom:12px;line-height:1.7"></div>
+    <form id="f">
+      <div class="two">
+        <label><span data-t="Service|सेवा"></span><select id="svc" required></select></label>
+        <label><span data-t="Type|प्रकार"></span><select id="typ" required></select></label>
+      </div>
+      <div class="two">
+        <label><span data-t="Full name|पूरा नाम"></span><input id="name" required data-v></label>
+        <label><span data-t="Mobile number|मोबाइल नंबर"></span><input id="mob" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" data-v></label>
+      </div>
+      <div class="two">
+        <label><span data-t="Email (optional)|ईमेल (वैकल्पिक)"></span><input id="email" type="email" data-v></label>
+        <label><span data-t="City / State|शहर / राज्य"></span><input id="city" data-v></label>
+      </div>
+      <div class="sel" id="est" style="display:none"></div>
+      <div id="dyn" class="two"></div>
+      <label><span data-t="Upload documents (PDF / JPG / PNG)|दस्तावेज़ अपलोड करें (PDF / JPG / PNG)"></span><input id="docs" type="file" multiple required accept=".pdf,.jpg,.jpeg,.png,image/*,application/pdf"></label>
+      <span class="note" id="dochint"></span>
+      <label><span data-t="Message (optional)|संदेश (वैकल्पिक)"></span><textarea id="msg" rows="2" data-v></textarea></label>
+      <button class="btn" type="submit" data-t="Pay &amp; Submit|भुगतान करें और जमा करें"></button>
+      <span class="note" data-t="Max 8 files, 5 MB each. You get a Tracking ID right after successful payment. Never share OTPs or passwords.|अधिकतम 8 फाइल, हर एक 5 MB। भुगतान सफल होते ही Tracking ID मिलेगी। OTP या पासवर्ड कभी न भेजें।"></span>
+    </form>
+  </div>
+</div></section>
+
+<section id="track"><div class="wrap">
+  <div class="card" style="max-width:660px;margin:0 auto">
+    <h2 data-t="Track Your Application|अपना आवेदन ट्रैक करें"></h2><p class="sub" data-t="Enter the Application ID we gave you and your mobile number.|हमारी दी हुई Application ID और अपना मोबाइल नंबर डालें।"></p>
+    <form id="tf">
+      <div class="two">
+        <label><span>Application ID</span><input id="tid" required placeholder="TDXXXXXX"></label>
+        <label><span data-t="Mobile number|मोबाइल नंबर"></span><input id="tmob" required inputmode="numeric" maxlength="10" pattern="[0-9]{10}"></label>
+      </div>
+      <button class="btn" type="submit" data-t="Track Status|स्टेटस देखें"></button>
+    </form>
+    <div id="tout"></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2 data-t="FAQs|अक्सर पूछे जाने वाले सवाल"></h2><p class="sub"></p>
+  <details><summary data-t="How long does a new PAN card take?|नया पैन कार्ड कितने दिन में बनता है?"></summary><p data-t="Usually a few working days after successful application; the e-PAN often arrives first by email.|आवेदन सफल होने के बाद आमतौर पर कुछ कार्य-दिवस; e-PAN अक्सर पहले ईमेल पर आ जाता है।"></p></details>
+  <details><summary data-t="Which FSSAI licence do I need?|मुझे कौन-सा FSSAI लाइसेंस चाहिए?"></summary><p data-t="It depends on turnover and business type — basic registration, State or Central licence. We guide you after checking details.|यह टर्नओवर और व्यवसाय के प्रकार पर निर्भर है — बेसिक रजिस्ट्रेशन, राज्य या केंद्रीय लाइसेंस। जानकारी देखकर हम बताएँगे।"></p></details>
+  <details><summary data-t="When is GST registration mandatory?|GST रजिस्ट्रेशन कब ज़रूरी है?"></summary><p data-t="When turnover crosses the prescribed limit, or for certain categories like inter-state and e-commerce sellers. Ask us to confirm.|जब टर्नओवर तय सीमा पार करे, या अंतर-राज्यीय/ई-कॉमर्स जैसे कुछ मामलों में। पक्का जानने के लिए हमसे पूछें।"></p></details>
+  <details><summary data-t="Can you file my GST returns every month?|क्या आप हर महीने GST रिटर्न भरेंगे?"></summary><p data-t="Yes. Share sales and purchase data each period and we file GSTR-1 and GSTR-3B on time.|हाँ। हर अवधि का बिक्री-खरीद डेटा भेजें, हम समय पर GSTR-1 और GSTR-3B भरेंगे।"></p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:var(--ink)">TaknaDocs</b><br><span data-t="PAN · FSSAI · GST assistance|पैन · FSSAI · GST सहायता"></span><br><span data-t="A product of <a href='https://www.takna.online' target='_blank' rel='noopener'><b>TAKNA Technology</b></a>|<a href='https://www.takna.online' target='_blank' rel='noopener'><b>TAKNA Technology</b></a> का प्रोडक्ट"></span></div>
+  <div>📞 +91 98765 43210<br>✉️ care@takna.online</div>
+  <div data-t="Independent private service provider; not affiliated with any government department.|स्वतंत्र निजी सेवा प्रदाता; किसी सरकारी विभाग से संबद्ध नहीं।"></div>
+  <div style="width:100%;text-align:center;border-top:1px solid var(--line);padding-top:12px">© 2026 <a href="https://www.takna.online" target="_blank" rel="noopener" style="color:var(--pri);font-weight:600">TAKNA Technology</a> · <a href="https://www.takna.online" target="_blank" rel="noopener" style="color:var(--pri)">www.takna.online</a></div>
+</div></footer>
+
+<script>
+var lang="en";try{lang=localStorage.getItem("lg")||"en"}catch(e){}
+var $=function(i){return document.getElementById(i)};
+var F={
+ app:{en:"Applicant type",hi:"आवेदक का प्रकार",o:[["Individual","व्यक्ति"],["Firm / LLP","फर्म / LLP"],["Company","कंपनी"]]},
+ fname:{en:"Father's name",hi:"पिता का नाम"},
+ dob:{en:"Date of birth",hi:"जन्म तिथि",t:"date"},
+ pan:{en:"PAN number",hi:"पैन नंबर"},
+ change:{en:"What to change?",hi:"क्या बदलना है?"},
+ biz:{en:"Business name",hi:"व्यवसाय का नाम"},
+ btype:{en:"Business type",hi:"व्यवसाय का प्रकार",o:[["Proprietor","प्रोप्राइटर"],["Partnership","पार्टनरशिप"],["Company","कंपनी"]]},
+ turn:{en:"Annual turnover",hi:"सालाना टर्नओवर",o:[["Up to 12 lakh","12 लाख तक"],["12 lakh to 20 crore","12 लाख से 20 करोड़"],["Above 20 crore","20 करोड़ से ऊपर"]]},
+ lic:{en:"Existing licence number",hi:"मौजूदा लाइसेंस नंबर"},
+ gstin:{en:"GSTIN",hi:"GSTIN"},
+ period:{en:"Return period (month/quarter)",hi:"रिटर्न अवधि (माह/तिमाही)"},
+ fy:{en:"Financial year",hi:"वित्त वर्ष"},
+ reason:{en:"Reason",hi:"कारण"}
+};
+var S={
+ pan:{ic:"🪪",en:"PAN Card",hi:"पैन कार्ड",t:[
+  ["New PAN card","नया पैन कार्ड",["app","fname","dob"]],
+  ["PAN correction / changes","पैन में सुधार / बदलाव",["pan","change"]],
+  ["Reprint of PAN","पैन रीप्रिंट",["pan"]],
+  ["Link PAN with Aadhaar","पैन–आधार लिंक",["pan"]]]},
+ fssai:{ic:"🍽️",en:"FSSAI Licence",hi:"FSSAI लाइसेंस",t:[
+  ["New registration / licence","नया रजिस्ट्रेशन / लाइसेंस",["biz","btype","turn"]],
+  ["Licence renewal","लाइसेंस रिन्यूअल",["lic","biz"]],
+  ["Modification of details","जानकारी में बदलाव",["lic","change"]],
+  ["Annual return (D-1)","वार्षिक रिटर्न (D-1)",["lic","fy"]]]},
+ gst:{ic:"📑",en:"GST",hi:"GST",t:[
+  ["New GST registration","नया GST रजिस्ट्रेशन",["biz","btype","turn"]],
+  ["Return filing (GSTR-1 / 3B)","रिटर्न फाइलिंग (GSTR-1 / 3B)",["gstin","period"]],
+  ["Annual return (GSTR-9)","वार्षिक रिटर्न (GSTR-9)",["gstin","fy"]],
+  ["Cancellation / notice","रद्दीकरण / नोटिस",["gstin","reason"]]]}
+};
+var V={},cur={s:"",t:-1};
+function L(a){return lang=="hi"?a[1]:a[0]}
+function tx(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(function(e){e.innerHTML=e.getAttribute("data-t").split("|")[lang=="hi"?1:0]});
+  $("lang").textContent=lang=="hi"?"EN":"हिंदी";
+  $("name").placeholder=L(["Your name","आपका नाम"]);$("mob").placeholder=L(["10-digit number","10 अंकों का नंबर"]);
+  $("msg").placeholder=L(["Any extra details","कोई अन्य जानकारी"]);
+  cards();selects();dyn();price();
+}
+function cards(){
+  var h="";
+  Object.keys(S).forEach(function(k){var s=S[k];
+    h+='<div class="card"><div class="ic">'+s.ic+'</div><h3>'+(lang=="hi"?s.hi:s.en)+'</h3>';
+    s.t.forEach(function(t,i){h+='<button class="opt" type="button" data-s="'+k+'" data-i="'+i+'">'+(lang=="hi"?t[1]:t[0])+' <i>→</i></button>'});
+    h+='</div>'});
+  $("cards").innerHTML=h;
+  document.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){pick(b.dataset.s,+b.dataset.i);$("apply").scrollIntoView()}});
+}
+function selects(){
+  var o='<option value="">'+L(["Select","चुनें"])+'</option>';
+  Object.keys(S).forEach(function(k){o+='<option value="'+k+'"'+(cur.s==k?" selected":"")+'>'+(lang=="hi"?S[k].hi:S[k].en)+'</option>'});
+  $("svc").innerHTML=o;
+  var t='<option value="">'+L(["Select","चुनें"])+'</option>';
+  if(cur.s)S[cur.s].t.forEach(function(x,i){t+='<option value="'+i+'"'+(cur.t==i?" selected":"")+'>'+L(x)+'</option>'});
+  $("typ").innerHTML=t;
+}
+function dyn(){
+  var h="",ek=cur.s&&cur.t>=0?cur.s+cur.t:"";
+  $("est").style.display=ek?"block":"none";
+  if(ek)$("est").textContent=L(["Price: ","शुल्क: "])+chg(ek);$("dochint").textContent=cur.s?L(DL[cur.s]):"";
+  if(cur.s&&cur.t>=0)S[cur.s].t[cur.t][2].forEach(function(k){var f=F[k],v=V[k]||"";
+    h+='<label><span>'+(lang=="hi"?f.hi:f.en)+'</span>';
+    if(f.o){h+='<select data-k="'+k+'" required><option value="">'+L(["Select","चुनें"])+'</option>';
+      f.o.forEach(function(x,i){h+='<option value="'+x[0]+'"'+(v==x[0]?" selected":"")+'>'+L(x)+'</option>'});h+='</select>'}
+    else h+='<input data-k="'+k+'" type="'+(f.t||"text")+'" value="'+v.replace(/"/g,"&quot;")+'" required>';
+    h+='</label>'});
+  $("dyn").innerHTML=h;
+  $("dyn").querySelectorAll("[data-k]").forEach(function(e){e.onchange=e.oninput=function(){V[e.dataset.k]=e.value}});
+}
+function pick(s,i){cur.s=s;cur.t=i;selects();dyn()}
+$("svc").onchange=function(){cur.s=this.value;cur.t=-1;selects();dyn()};
+$("typ").onchange=function(){cur.t=this.value===""?-1:+this.value;dyn()};
+$("lang").onclick=function(){lang=lang=="hi"?"en":"hi";try{localStorage.setItem("lg",lang)}catch(e){}tx()};
+document.querySelectorAll(".tab").forEach(function(b){b.onclick=function(){
+  document.querySelectorAll(".tab,.pane").forEach(function(x){x.classList.remove("on")});
+  b.classList.add("on");$(b.dataset.d).classList.add("on")}});
+
+var PR={};
+var STG=[["Applied","आवेदन हुआ"],["Documents verified","दस्तावेज़ जाँचे गए"],["Filed on portal","पोर्टल पर फाइल हुआ"],["In processing","प्रोसेसिंग में"],["Completed","पूरा हुआ"]];
+function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function chg(k){var p=PR[k];return p&&p.svc?"₹"+p.svc:L(["On request","संपर्क करें"])}
+function kn(k){var s=S[k.slice(0,-1)],t=s.t[+k.slice(-1)];return L([s.en+" – "+t[0],s.hi+" – "+t[1]])}
+function price(){
+  var h='<tr><th>'+L(["Service","सेवा"])+'</th><th style="text-align:right">'+L(["Price","शुल्क"])+'</th></tr>';
+  Object.keys(S).forEach(function(k){h+='<tr class="grp"><td colspan="2">'+S[k].ic+" "+L([S[k].en,S[k].hi])+'</td></tr>';
+    S[k].t.forEach(function(t,i){h+='<tr><td>'+L(t)+'</td><td style="text-align:right"><b>'+chg(k+i)+'</b></td></tr>'})});
+  $("ptab").innerHTML=h;
+}
+var DL={pan:["Needed: Aadhaar + one more ID proof, passport photo, signature.","ज़रूरी: आधार + एक और पहचान प्रमाण, पासपोर्ट फोटो, हस्ताक्षर।"],
+ fssai:["Needed: photo ID, photo, address proof of premises, product list (more for State/Central).","ज़रूरी: फोटो आईडी, फोटो, दुकान का पता प्रमाण, उत्पाद सूची (राज्य/केंद्रीय में और)।"],
+ gst:["Needed: PAN, Aadhaar, photo, address proof, bank proof (returns: invoices / sales-purchase sheet).","ज़रूरी: पैन, आधार, फोटो, पता प्रमाण, बैंक प्रमाण (रिटर्न: इनवॉइस / बिक्री-खरीद शीट)।"]};
+fetch("/api/pricing").then(function(r){return r.json()}).then(function(p){PR=p;price();dyn()}).catch(function(){});
+function post(u,fd,json){return fetch(u,{method:"POST",body:json?JSON.stringify(json):fd,headers:json?{"Content-Type":"application/json"}:{}}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||"Error");return j})})}
+function busy(b){$("f").querySelector("button[type=submit]").disabled=b}
+$("f").onsubmit=function(e){
+  e.preventDefault();if(cur.t<0)return;
+  var fl=$("docs").files;if(!fl.length){alert(L(["Please upload your documents","कृपया दस्तावेज़ अपलोड करें"]));return}
+  var fd=new FormData(),fv={};S[cur.s].t[cur.t][2].forEach(function(k){fv[k]=V[k]||""});
+  fd.append("key",cur.s+cur.t);fd.append("fields",JSON.stringify(fv));
+  ["name","mob","email","city","msg"].forEach(function(n){fd.append(n,$(n).value)});
+  for(var i=0;i<fl.length;i++)fd.append("docs",fl[i]);
+  busy(true);post("/api/orders",fd).then(pay).catch(function(err){alert(err.message);busy(false)});
+};
+function pay(o){location.href=o.checkoutUrl}
+function done(id){
+  var m=$("mob").value,ok=$("okbox");busy(false);ok.hidden=false;
+  ok.innerHTML="✅ "+L(["Payment successful! Your Tracking ID:","भुगतान सफल! आपकी Tracking ID:"])+' <b style="font-size:1.25rem;user-select:all">'+esc(id)+'</b><br>'+L(["Status: Applied. Save this ID and track with your mobile number below.","स्टेटस: आवेदन हो गया। यह ID सुरक्षित रखें और नीचे मोबाइल नंबर से ट्रैक करें।"]);
+  $("tid").value=id;$("tmob").value=m;$("f").reset();V={};cur={s:"",t:-1};selects();dyn();ok.scrollIntoView();
+}
+try{var qs=new URLSearchParams(location.search);if(qs.get("tid"))$("tid").value=qs.get("tid")}catch(e){}
+$("tf").onsubmit=function(e){
+  e.preventDefault();
+  var id=$("tid").value.trim().toUpperCase(),m=$("tmob").value.trim(),q="id="+encodeURIComponent(id)+"&mobile="+encodeURIComponent(m);
+  fetch("/api/track?"+q).then(function(r){return r.ok?r.json():null}).then(function(a){
+    var o="";
+    if(!a)o='<p style="color:var(--acc);font-weight:600">'+L(["No application found. Check your ID and mobile number.","आवेदन नहीं मिला। ID और मोबाइल नंबर जाँचें।"])+'</p>';
+    else{o='<p style="margin:16px 0 0"><b>'+esc(a.track)+'</b> · '+esc(a.name)+'<br>'+kn(a.key)+'</p><p><span class="pill">'+L(STG[a.status])+'</span>'+(a.arn?' &nbsp; ARN / Ref: <b>'+esc(a.arn)+'</b>':"")+'</p><ul class="tl">';
+      STG.forEach(function(g,i){o+='<li class="'+(i<a.status?"d":i==a.status?"d c":"")+'">'+L(g)+'</li>'});o+='</ul>';
+      if(a.log.length)o+='<p class="note">'+a.log.map(function(x){return esc(new Date(x.t).toLocaleDateString())+": "+esc(x.n)}).join("<br>")+'</p>';
+      if(a.hasInvoice)o+='<p><a class="btn alt" href="/api/track/invoice?'+q+'">🧾 '+L(["Download invoice (PDF)","इनवॉइस डाउनलोड करें (PDF)"])+'</a></p>';
+      if(a.hasResult)o+='<p><a class="btn" href="/api/track/download?'+q+'">⬇ '+L(["Download your document","अपना दस्तावेज़ डाउनलोड करें"])+'</a></p>'}
+    $("tout").innerHTML=o});
+};
+tx();
+</script>
+</body>
+</html>

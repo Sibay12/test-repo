@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Admin – TaknaDocs</title><link rel="icon" href="/logo.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f4f6fa;--c:#fff;--ink:#12213a;--mu:#5b6882;--ln:#e2e6ee;--pri:#0b5fff;--ok:#12a150;--ac:#ff7a1a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1626;--c:#16213a;--ink:#eef2fb;--mu:#9aa8c4;--ln:#27344f;--pri:#5b8cff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;line-height:1.5}
+.w{max-width:960px;margin:0 auto;padding:14px}
+header{background:var(--c);border-bottom:1px solid var(--ln);position:sticky;top:0;z-index:5}
+header .w{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.t{border:1px solid var(--ln);background:var(--c);color:var(--ink);border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer}
+.t.on{background:var(--pri);color:#fff;border-color:var(--pri)}.b{background:var(--ac);color:#fff;border-radius:99px;padding:0 7px;font-size:.8rem;margin-left:4px}
+.card{background:var(--c);border:1px solid var(--ln);border-radius:14px;padding:16px;margin-bottom:14px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--ln);border-radius:9px;padding:9px;width:100%}
+button.p{background:var(--pri);color:#fff;border:0;border-radius:9px;padding:10px 16px;font-weight:700;cursor:pointer}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:8px 0}
+small,.m{color:var(--mu)}a{color:var(--pri)}.pill{background:var(--ok);color:#fff;border-radius:99px;padding:2px 10px;font-size:.8rem;font-weight:700}
+table{width:100%;border-collapse:collapse}td,th{padding:6px;border-bottom:1px solid var(--ln);text-align:left;font-size:.9rem}
+</style></head><body>
+<div id="lg" class="w" style="max-width:380px;margin-top:80px"><div class="card"><div style="text-align:center"><img src="/logo.svg" width="64" height="64" alt=""></div><h2>🔐 Admin Login</h2><input id="pw" type="password" placeholder="Password" autocomplete="current-password"><br><br><button class="p" id="go">Login</button> <small id="le"></small></div></div>
+<div id="ap" hidden><header><div class="w"><img src="/logo.svg" width="28" height="28" alt=""><b>TaknaDocs Admin</b><button class="t" data-t="new">New Orders<span class="b" id="nb">0</span></button><button class="t" data-t="all">All Orders</button><button class="t" data-t="price">Pricing</button><button class="t" id="out" style="margin-left:auto">Logout</button></div></header><div class="w" id="mn"></div></div>
+<script>
+var STG=["Applied","Documents verified","Filed on portal","In processing","Completed"],$=function(i){return document.getElementById(i)},tab="new",D={orders:[],serv:{}};
+function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function api(u,o){return fetch(u,o).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status==401&&u!="/api/admin/login"){show(false);throw new Error("Login required")}if(!r.ok)throw new Error(j.error||"Error");return j})})}
+function show(v){$("lg").hidden=v;$("ap").hidden=!v}
+$("go").onclick=function(){api("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$("pw").value})}).then(boot).catch(function(e){$("le").textContent=e.message})};
+$("pw").onkeydown=function(e){if(e.key=="Enter")$("go").click()};
+$("out").onclick=function(){api("/api/admin/logout",{method:"POST"}).then(function(){location.reload()})};
+document.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){tab=b.dataset.t;draw()}});
+function boot(){return api("/api/admin/orders").then(function(d){D=d;show(true);draw()}).catch(function(){})}
+function draw(){
+  document.querySelectorAll("[data-t]").forEach(function(b){b.classList.toggle("on",b.dataset.t==tab)});
+  $("nb").textContent=D.orders.filter(function(o){return o.status==0}).length;
+  if(tab=="price")return pricing();
+  var L=D.orders.filter(function(o){return tab=="all"||o.status==0});
+  $("mn").innerHTML=L.length?"":'<p class="m">'+(tab=="new"?"No new orders.":"No orders yet.")+'</p>';
+  L.forEach(function(o){
+    var d=document.createElement("div");d.className="card";
+    var f=Object.keys(o.fields).map(function(k){return "<tr><td>"+esc(k)+"</td><td>"+esc(o.fields[k])+"</td></tr>"}).join("");
+    var wa="https://wa.me/91"+o.mobile+"?text="+encodeURIComponent("Hello "+o.name+", your application "+o.track+" is now: ");
+    d.innerHTML='<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>'+esc(o.track)+'</b><span class="pill">'+STG[o.status]+'</span></div>'+
+     '<p style="margin:6px 0">'+esc(D.serv[o.key])+' · <b>₹'+o.amount+'</b> paid · <small>'+new Date(o.paidAt).toLocaleString()+'</small></p>'+
+     '<p style="margin:6px 0">👤 '+esc(o.name)+' · 📞 <a href="'+wa+'" target="_blank" rel="noopener">'+esc(o.mobile)+' (WhatsApp)</a>'+(o.email?' · ✉ '+esc(o.email):'')+(o.city?' · '+esc(o.city):'')+'</p>'+
+     (f?'<table>'+f+'</table>':'')+(o.msg?'<p class="m">Note: '+esc(o.msg)+'</p>':'')+
+     '<p><a href="/api/admin/orders/'+o.id+'/invoice" target="_blank">🧾 Invoice PDF</a></p><p><b>Documents:</b> '+o.files.map(function(x){return '<a href="/api/admin/orders/'+o.id+'/files/'+x.id+'" target="_blank">'+esc(x.orig)+'</a>'}).join(" · ")+'</p>'+
+     '<div class="g"><select class="st">'+STG.map(function(s,i){return '<option value="'+i+'"'+(o.status==i?" selected":"")+'>'+s+'</option>'}).join("")+'</select><input class="rn" placeholder="ARN / reference no." value="'+esc(o.arn)+'"><input class="nt" placeholder="Note for customer (optional)"></div>'+
+     '<p class="m" style="margin:6px 0">Final document for customer'+(o.result?' (uploaded: '+esc(o.result.orig)+')':'')+' – PDF/JPG/PNG:</p><input class="rf" type="file" accept=".pdf,.jpg,.jpeg,.png"><br><br><button class="p">Save changes</button> <small class="ms"></small>';
+    d.querySelector("button").onclick=function(){
+      var fd=new FormData();fd.append("status",d.querySelector(".st").value);fd.append("arn",d.querySelector(".rn").value);fd.append("note",d.querySelector(".nt").value);
+      var fl=d.querySelector(".rf").files[0];if(fl)fd.append("result",fl);
+      api("/api/admin/orders/"+o.id,{method:"POST",body:fd}).then(boot).catch(function(e){d.querySelector(".ms").textContent=e.message})};
+    $("mn").appendChild(d)})
+}
+function pricing(){
+  api("/api/admin/pricing").then(function(d){
+    var h='<div class="card"><h3>Pricing (₹)</h3><p class="m">Set the price for each service. This is the amount the customer pays online. A service with price 0 cannot be ordered online.</p><div style="overflow-x:auto"><table><tr><th>Service</th><th>Price (₹)</th></tr>';
+    Object.keys(d.serv).forEach(function(k){var p=d.pricing[k];h+='<tr data-k="'+k+'"><td>'+esc(d.serv[k])+'</td><td><input class="s1" type="number" min="0" style="max-width:160px" value="'+p.svc+'"></td></tr>'});
+    $("mn").innerHTML=h+'</table></div><br><button class="p" id="sv">Save pricing</button> <small id="pm"></small></div>';
+    $("sv").onclick=function(){var b={};document.querySelectorAll("tr[data-k]").forEach(function(r){b[r.dataset.k]={svc:r.querySelector(".s1").value}});
+      api("/api/admin/pricing",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}).then(function(){$("pm").textContent="Saved ✓"}).catch(function(e){$("pm").textContent=e.message})}})
+}
+boot();
+</script></body></html>
