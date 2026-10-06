@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: takna-docs
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 2
+    envVars:
+      - { key: NODE_ENV, value: production }
+      - { key: DATA_DIR, value: /var/data }
+      - { key: ADMIN_PASSWORD, sync: false }
+      - { key: SESSION_SECRET, generateValue: true }
+      - { key: SITE_URL, sync: false }
+      - { key: TAKNAPAY_API_KEY, sync: false }
+      - { key: BIZ_ADDRESS, sync: false }
+      - { key: BIZ_EMAIL, sync: false }
+      - { key: BIZ_PHONE, sync: false }
+      - { key: BIZ_GSTIN, sync: false }
